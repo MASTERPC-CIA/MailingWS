@@ -1,0 +1,2 @@
+# MailingWS
+Webservices para mailing
