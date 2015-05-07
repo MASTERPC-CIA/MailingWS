@@ -17,7 +17,7 @@ class Send_Model extends CI_Model{
         $this->load->library('mandrill'); //load mandrill and provide apikey
 
         try {
-            $mandrill = new Mandrill('u76rscKU1KeKZn2__mnBrA');
+            $mandrill = new Mandrill('Ae4hZndzZDl6DECj6yj77w');
             $message = array(
                 'html' => $menssage,
                 'text' => '',
@@ -41,7 +41,7 @@ class Send_Model extends CI_Model{
         //        'url_strip_qs' => null,
                 'preserve_recipients' => true,//pone en el encabezado a todos los correos que reciben
         //        'view_content_link' => null,
-                'bcc_address' => 'dannyjimenez110@gmail.com',//correo que se desee que reciba una copia de todos los mensajes
+         //       'bcc_address' => 'dannyjimenez110@gmail.com',//correo que se desee que reciba una copia de todos los mensajes
        //         'tracking_domain' => 'masterpc.com.ec',//domino personalizado para seguimientpo de los correos
         //        'signing_domain' => null,
         //        'return_path_domain' => null,

@@ -1,3 +1,3 @@
 <?php
 
-$config['mandrill_api_key'] = 'u76rscKU1KeKZn2__mnBrA';
+$config['mandrill_api_key'] = 'Ae4hZndzZDl6DECj6yj77w';
