@@ -13,7 +13,7 @@ class Client_Send extends CI_Controller{
     
     public function enviar(){
         
-        $url = 'http://localhost/mailingws/send_mail/send';
+        $url = base_url().'send_mail/send';
         $data = array('email_from' => 'dannyjimenez110@gmail.com',
                     'name_from' => 'Daniel Jimenez hotmail',
                     'email_to' => 'danny_110@hotmail.com',
