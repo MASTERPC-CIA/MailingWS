@@ -12,10 +12,35 @@ class Send_Model extends CI_Model{
         parent::__construct();
     }
 
-    public function send_email($email_from, $name_from = '' , $email_to, $title, $menssage){
+    public function send_email($email_from, $name_from = '' , $array_email_to, $title, $menssage){
     	
         $this->load->library('mandrill'); //load mandrill and provide apikey
-
+        if(is_string($array_email_to)){
+            $arr_mail = explode(',', $array_email_to);
+            $array_email_to = array();
+            foreach ($arr_mail as $key => $value) {
+                $array_email_to[$key] = array(
+                                            'email' => $value,
+                                            'name' => '',
+                                            'type' => 'to'
+                                    ); 
+                      
+            }    
+        }
+        if(is_array($array_email_to[0])){
+            ///si se cumple esta condicion quiere deecir que lo correos a enviar estan dentro de un arreglo de arreglos
+        }else if(is_array($array_email_to)){
+            //$array_email_to = array();
+            foreach ($array_email_to as $key => $value) {
+                $array_email_to[$key] = array(
+                                            'email' => $value,
+                                            'name' => '',
+                                            'type' => 'to'
+                                    ); 
+                      
+            }  
+        }
+        
         try {
             $mandrill = new Mandrill('Ae4hZndzZDl6DECj6yj77w');
             $message = array(
@@ -24,13 +49,14 @@ class Send_Model extends CI_Model{
                 'subject' => $title,
                 'from_email' => $email_from,
                 'from_name' => $name_from,
-                'to' => array(
-                    array(
-                        'email' => $email_to,
-                        'name' => '',
-                        'type' => 'to'
-                    )
-                ),
+//                'to' => array(
+//                    array(
+//                        'email' => $email_to,
+//                        'name' => '',
+//                        'type' => 'to'
+//                    )
+//                ),
+                'to' => $array_email_to,
                 'headers' => array('Reply-To' => ''),
                 'important' => TRUE,
         //        'track_opens' => true,
@@ -41,7 +67,7 @@ class Send_Model extends CI_Model{
         //        'url_strip_qs' => null,
                 'preserve_recipients' => true,//pone en el encabezado a todos los correos que reciben
         //        'view_content_link' => null,
-         //       'bcc_address' => 'dannyjimenez110@gmail.com',//correo que se desee que reciba una copia de todos los mensajes
+                'bcc_address' => 'masterpc@masterpc.com.ec',//correo que se desee que reciba una copia de todos los mensajes
        //         'tracking_domain' => 'masterpc.com.ec',//domino personalizado para seguimientpo de los correos
         //        'signing_domain' => null,
         //        'return_path_domain' => null,
