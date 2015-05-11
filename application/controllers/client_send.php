@@ -37,7 +37,8 @@ class Client_Send extends CI_Controller{
                     //'email_to' => 'danny_110@hotmail.com',
                     'email_to' => $correos,
                     'title' => 'Titulo del mensaje',
-                    'msg' => 'cuerpo del mensaje'
+                    'msg' => 'cuerpo del mensaje',
+                    'url_file' => array('http://localhost/billingsof_core/resources/cotizacionespdf/','prefact_2187.pdf')
             );
 
         // use key 'http' even if you send the request to https://...

@@ -21,9 +21,11 @@ class Send_Mail extends REST_Controller{
             $this->post('name_from') ,
             $this->post('email_to'),
             $this->post('title'),
-            $this->post('msg')
+            $this->post('msg'),
+            $this->post('url_file')
           );
-        if($envio > 0){
+        
+        if(!is_null($envio)){
           $this->response(array('response' => $envio),200);
         }else{
           $this->response(array('error' => 'No se pudo enviar el correo!!'),404);

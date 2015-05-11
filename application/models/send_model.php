@@ -12,7 +12,7 @@ class Send_Model extends CI_Model{
         parent::__construct();
     }
 
-    public function send_email($email_from, $name_from = '' , $array_email_to, $title, $menssage){
+    public function send_email($email_from, $name_from = '' , $array_email_to, $title, $menssage, $url_file=''){
     	
         $this->load->library('mandrill'); //load mandrill and provide apikey
         if(is_string($array_email_to)){
@@ -39,6 +39,14 @@ class Send_Model extends CI_Model{
                                     ); 
                       
             }  
+        }
+        If(!empty($url_file)){
+            $attachment = file_get_contents($url_file[0].$url_file[1]);              
+            $attachment_encoded = base64_encode($attachment);
+            $name_file = $url_file[1];
+        }else{
+            $attachment_encoded = '';
+            $name_file = '';
         }
         
         try {
@@ -101,13 +109,14 @@ class Send_Model extends CI_Model{
         //                //'values' => array('user_id' => 123456)
         //            )
         //        ),
-        //        'attachments' => array(///adicionar archivos 
-        //            array(
-        //                'type' => 'text/plain',
-        //                'name' => 'myfile.txt',
-        //                'content' => 'ZXhhbXBsZSBmaWxl'
-        //            )
-        //        ),
+                'attachments' => array(///adicionar archivos 
+                    array(
+                        //'path' => base_url('resources/cotizacionespdf'),
+                        'type' => 'application/pdf',
+                        'name' => $name_file,
+                        'content' => $attachment_encoded
+                    )
+                ),
         //        'images' => array(///adicionar imagenes
         //            array(
         //                'type' => 'image/png',
@@ -124,11 +133,11 @@ class Send_Model extends CI_Model{
         //    $result = $mandrill->messages->send($message, $async, $ip_pool, $send_at);
             $result = $mandrill->messages->send($message, $async ,$ip_pool,$send_at);
             //print_r($result);
-            if($result[0]['status'] == 'sent'){
+            //if($result[0]['status'] == 'sent'){
                 return $result;
-            }else{
-                return NULL;
-            }
+//            }else{
+//                return NULL;
+//            }
 
         } catch(Mandrill_Error $e) {
             // Mandrill errors are thrown as exceptions
