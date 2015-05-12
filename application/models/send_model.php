@@ -41,7 +41,8 @@ class Send_Model extends CI_Model{
             }  
         }
         If(!empty($url_file)){
-            $attachment = file_get_contents($url_file[0].$url_file[1].'.pdf');              
+            //$attachment = file_get_contents($url_file[0].$url_file[1].'.pdf');              
+            $attachment = file_get_contents($url_file[0]);              
             $attachment_encoded = base64_encode($attachment);
             $name_file = $url_file[1].'.pdf';
         }else{
