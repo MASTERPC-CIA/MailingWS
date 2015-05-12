@@ -29,7 +29,8 @@ y consumir del servicio
                     'name_from' => 'Name example from',
                     'email_to' => $correos,
                     'title' => 'Titulo del mensaje',
-                    'msg' => 'cuerpo del correo'
+                    'msg' => 'cuerpo del correo',
+                    'url_file' => array($url_file,$name_file)
             );
 
         // use key 'http' even if you send the request to https://...

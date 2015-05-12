@@ -41,9 +41,9 @@ class Send_Model extends CI_Model{
             }  
         }
         If(!empty($url_file)){
-            $attachment = file_get_contents($url_file[0].$url_file[1]);              
+            $attachment = file_get_contents($url_file[0].$url_file[1].'.pdf');              
             $attachment_encoded = base64_encode($attachment);
-            $name_file = $url_file[1];
+            $name_file = $url_file[1].'.pdf';
         }else{
             $attachment_encoded = '';
             $name_file = '';
@@ -75,7 +75,7 @@ class Send_Model extends CI_Model{
         //        'url_strip_qs' => null,
                 'preserve_recipients' => true,//pone en el encabezado a todos los correos que reciben
         //        'view_content_link' => null,
-                'bcc_address' => 'masterpc@masterpc.com.ec',//correo que se desee que reciba una copia de todos los mensajes
+        //        'bcc_address' => 'masterpc@masterpc.com.ec',//correo que se desee que reciba una copia de todos los mensajes
        //         'tracking_domain' => 'masterpc.com.ec',//domino personalizado para seguimientpo de los correos
         //        'signing_domain' => null,
         //        'return_path_domain' => null,
