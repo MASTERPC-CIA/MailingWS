@@ -66,7 +66,7 @@ class Send_Model extends CI_Model{
 //                    )
 //                ),
                 'to' => $array_email_to,
-                'headers' => array('Reply-To' => ''),
+                'headers' => array('Reply-To' => $email_from),
                 'important' => TRUE,
         //        'track_opens' => true,
         //        'track_clicks' => true,
