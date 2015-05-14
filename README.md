@@ -3,9 +3,9 @@ Webservices para mailing
 
 #Ejemplo para consumir un servicio rest por post
 Aqui se muestra un ejemplo de los datos que un cliente debe pasar por post al servidor
-y consumir del servicio
+y consumir del servicio.
 
- /*primera forma de enviar los parametros de los correos como arreglo de arreglos*/
+    /*primera forma de enviar los parametros de los correos como arreglo de arreglos*/
         $correos = array(
                         array(
                             'email' => 'example1@example.com',
@@ -44,3 +44,13 @@ y consumir del servicio
         $context  = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
         echo $result;
+
+#Configuracion en el hosting de los correos, para que sean validados por mandrill
+Para todos los dominios registrados en mandrill se crea un DKIM y un SPF los mismos que deben ser configurados el el hosting 
+del dominio.
+1.- En éste enlace https://mandrillapp.com/settings/sending-domains podemos ver los dominios registrados por mandrill, en el mismo 
+podemos ver las instrucciones de DKIM y SPF que deben ser configuradas en el cpanel del hosting, se debe crear un registro TXT en el editor de
+zona DNS avanzada, primeramente se selecciona el dominio a configurar y se crea el nuevo registro con los datos que se proporciona 
+en mandrill 
+
+para mejor comprension ver el siguiente video https://www.youtube.com/watch?v=0MniuOXwPJc
